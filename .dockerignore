@@ -1,0 +1,12 @@
+dist/
+.git/
+node_modules/
+.vscode/*
+.idea/
+.github/
+.snyk
+*.md
+proxy/
+test/
+dockerfile
+docker-compose.yml

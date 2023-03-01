@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+  proxy.prod:
+    build:
+      context: proxy
+      dockerfile: Dockerfile
+    volumes:
+      - ./proxy/certs:/etc/nginx/certs
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    environment:
+      BACKEND_HOST: 'app.prod:3005'
+      HOST_NAME: 'localhost'
+    depends_on:
+      - app.prod
+    networks:
+      - default
+
+  app.prod:
+    build: .
+    environment:
+      CLUSTER_MODE: 'false'
+      PORT: 3005
+    ports:
+      - '3005:3005'
+    networks:
+      - default
+
+networks:
+  default:

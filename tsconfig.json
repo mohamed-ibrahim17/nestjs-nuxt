@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "skipLibCheck": true,
+    "target": "es2018",
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "baseUrl": "./",
+    "rootDir": "./",
+    "incremental": true,
+    "paths": {
+      "@server/*": ["server/*"],
+      "@client/*": ["client/*"],
+      "@common/*": ["common/*"],
+      "~/*": ["./client/*"]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "client",
+      "server"
+    ],
+    "types": [
+      "@nuxt/types",
+      "@nuxtjs/axios",
+      "reflect-metadata",
+      "jest"
+    ]
+  },
+  "exclude": ["dist"]
+}

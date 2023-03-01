@@ -1,0 +1,11 @@
+# Base Nginx HTTP/3 Image
+FROM macbre/nginx-http3:latest
+
+ENV BACKEND_HOST=app.prod \
+    HOST_NAME=localhost
+
+COPY ./start.sh /start.sh
+COPY ./proxy.nginx.conf /template/
+
+CMD ["sh", "/start.sh"]
+
