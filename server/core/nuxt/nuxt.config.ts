@@ -54,6 +54,9 @@ export const config: NuxtConfig = {
    */
   plugins: [],
 
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
   /*
    ** Nuxt.js modules
    */
@@ -147,6 +150,18 @@ export const config: NuxtConfig = {
           new TsconfigPathsPlugin({ configFile }),
         ];
       }
+
+      cfg.module.rules.push({
+        test: /\.twig$/,
+        loader: 'twig-loader',
+        options: {
+          // See options section below
+        },
+      });
+
+      cfg.node = {
+        fs: 'empty', // avoids error messages
+      };
     },
   },
 

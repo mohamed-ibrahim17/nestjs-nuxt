@@ -2,6 +2,7 @@
   <div>
     <h1>index</h1>
     <button @click="fetchUsers()" :disabled="loading">refresh</button>
+    <nuxt-link to="/posts">posts</nuxt-link>
     <ul class="user-list">
       <li v-for="user in users" :key="user.id">
         <span>{{ user.name }}</span>
@@ -22,7 +23,7 @@ import { User } from '@common/UserInterface';
 import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component
-export default class YourComponent extends Vue {
+export default class HomeComponent extends Vue {
   users: User[] = [];
   loading = false;
 

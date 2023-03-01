@@ -39,7 +39,9 @@
     "nuxt-property-decorator": "2.9.1",
     "reflect-metadata": "0.1.13",
     "rxjs": "7.5.5",
-    "tslib": "2.4.0"
+    "tslib": "2.4.0",
+    "twig": "^1.16.0",
+    "twig-loader": "^0.5.5"
   },
   "devDependencies": {
     "@nestjs/cli": "8.2.8",
