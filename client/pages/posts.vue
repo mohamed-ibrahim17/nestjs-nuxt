@@ -17,8 +17,25 @@ import { Component, Vue } from 'nuxt-property-decorator';
 
 @Component
 export default class PostsComponent extends Vue {
-  templateOptions: { posts: Post[] } = {
+  // async asyncData({ $axios }) {
+  //   let loading = true;
+
+  //   const posts: Post[] = (await $axios.get('api/posts'))?.data ?? [];
+
+  //   loading = false;
+
+  //   return {
+  //     templateOptions: { posts: Post[]; name: string } = {
+  //        posts: [],
+  //        name: 'TWIG',
+  //     },
+  //     loading,
+  //   };
+  // }
+
+  templateOptions: { posts: Post[]; name: string } = {
     posts: [],
+    name: 'TWIG',
   };
 
   loading = true;
@@ -27,11 +44,12 @@ export default class PostsComponent extends Vue {
     return this.fetchPosts();
   }
 
-  async fetchPosts() {
+  async fetchPosts(): Promise<void> {
     try {
       this.loading = true;
 
-      this.templateOptions.posts = (await this.$axios.get('posts'))?.data ?? [];
+      this.templateOptions.posts =
+        (await this.$axios.get('api/posts'))?.data ?? [];
     } finally {
       this.loading = false;
     }

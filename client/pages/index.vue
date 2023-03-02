@@ -31,11 +31,11 @@ export default class HomeComponent extends Vue {
     return this.fetchUsers();
   }
 
-  async fetchUsers() {
+  async fetchUsers(): Promise<void> {
     try {
       this.loading = true;
 
-      this.users = (await this.$axios.get('users'))?.data ?? [];
+      this.users = (await this.$axios.get('api/users'))?.data ?? [];
     } finally {
       this.loading = false;
     }

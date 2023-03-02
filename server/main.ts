@@ -28,6 +28,8 @@ declare const module: any;
       fastify,
       { bufferLogs: true },
     );
+    app.setGlobalPrefix('api');
+
     app.useGlobalFilters(new NuxtFastifyFilter(nuxt));
 
     // const app = await NestFactory.create(ApplicationModule, {bufferLogs: true});

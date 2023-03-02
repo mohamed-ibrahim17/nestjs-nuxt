@@ -3,38 +3,32 @@
     <div v-html="twigHtml"></div>
   </client-only>
 </template>
-<script>
-export default {
-  name: 'ComponentWrapper',
-  props: {
-    templatePath: {
-      type: String,
-      required: true,
-    },
-    options: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  data() {
-    return {
-      twigHtml: null,
-    };
-  },
-  mounted() {
-    this.$nextTick(() => {
-      if (this.templatePath) {
-        this.loadTwigTemplate(this.templatePath, this.options);
-      }
-    });
-  },
 
-  methods: {
-    loadTwigTemplate(file, options) {
-      import(`@/${file}`).then((module) => {
-        this.twigHtml = module.default(options);
-      });
-    },
-  },
-};
+<script lang="ts">
+import { Component, Prop, Vue } from 'nuxt-property-decorator';
+
+@Component
+export default class TemplateComponentWrapper extends Vue {
+  @Prop({
+    required: true,
+  })
+  templatePath!: string;
+
+  @Prop()
+  options!: Record<string, any>;
+
+  twigHtml = null;
+
+  mounted(): void {
+    if (this.templatePath) {
+      this.loadTwigTemplate(this.templatePath, this.options);
+    }
+  }
+
+  loadTwigTemplate(file: string, options: Record<string, any>) {
+    import(`@/${file}`).then((module) => {
+      this.twigHtml = module(options);
+    });
+  }
+}
 </script>
